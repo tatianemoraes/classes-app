@@ -7,7 +7,7 @@ import Proffy from '../../assets/Proffy.png';
 
 import { Container } from './style';
 
-function HeaderForm() {
+function HeaderForm({ title, subtitle }) {
 
   const history = useHistory();
 
@@ -20,9 +20,9 @@ function HeaderForm() {
         <img src={Proffy} alt=""/>
       </div>
       <div className="header-phrases">
-        <h1>Que incrível que você quer dar aulas.</h1>
+        <h1>{title}</h1> 
         <div className="second-phrase">
-          <h3>O primeiro passo é preencher esse formulário de inscrição.</h3>
+          <h3>{subtitle}</h3>
         </div>
       </div>
     </Container>

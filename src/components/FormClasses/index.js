@@ -59,6 +59,12 @@ function FormClasses() {
             <input className="hour1" type="text"/>
             <input className="hour2" type="text"/>
           </div>
+
+          <div>
+            <button className="btn-save">
+              Salvar Cadastro
+            </button>
+          </div>
       </Form>
     </Container>
   );

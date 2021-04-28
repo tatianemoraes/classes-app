@@ -112,4 +112,15 @@ export const Form = styled.form`
     display:flex;
     justify-content:space-between;
   }
+
+  .btn-save {
+    background: #04D361;
+    border-radius: 6px;
+    color: #fff;
+    width: 200px;
+    height: 50px;
+    margin-top: 15px;
+    margin-left: 370px;
+    font-size: 18px;
+  }
 `;
