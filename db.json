@@ -1,19 +1,31 @@
 {
-  "posts": [
+  "proffys": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "name": "Maria Antonia", 
+      "class": "Português", 
+      "mainSentence": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim consectetur fuga facilis!", 
+      "moreAbout": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, repudiandae praesentium. Molestias at voluptatibus officia sed voluptas, eius numquam similique hic necessitatibus odit officiis aut tenetur autem est excepturi cum.", 
+      "price": "40,00",
+      "telephone": "(19)99999-9999"
+    }, 
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "name": "Marcos Antonio", 
+      "class": "Química", 
+      "mainSentence": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim consectetur fuga facilis!", 
+      "moreAbout": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, repudiandae praesentium. Molestias at voluptatibus officia sed voluptas, eius numquam similique hic necessitatibus odit officiis aut tenetur autem est excepturi cum.", 
+      "price": "20,00",
+      "telephone": "(19)99999-8888"
+    }, 
+    {
+      "id": 3,
+      "name": "Eduardo Torres", 
+      "class": "Inglês", 
+      "mainSentence": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim consectetur fuga facilis!", 
+      "moreAbout": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, repudiandae praesentium. Molestias at voluptatibus officia sed voluptas, eius numquam similique hic necessitatibus odit officiis aut tenetur autem est excepturi cum.", 
+      "price": "35,00",
+      "telephone": "(19)99999-5555"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

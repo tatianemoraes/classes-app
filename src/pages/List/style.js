@@ -20,7 +20,7 @@ export const Panel = styled.div`
   border-radius: 10px;
   padding: 60px;
   margin-top: -45px;
-  margin-bottom: 50px;
+  margin-bottom: 65px;
 
   .profile {
     display: flex; 
@@ -35,8 +35,8 @@ export const Panel = styled.div`
       margin-top: 15px;
 
       img {
-        width: 90px;
-        height: 85px;
+        width: 80px;
+        height: 82px;
         border-radius: 50%;
       }
 

@@ -16,13 +16,18 @@ function Buttons() {
       <div className="footer">
         <div className="buttons">
           <button className="btn-study">
-            <img src={Estudar} alt="Estudar"/>
+            <img 
+              src={Estudar} 
+              alt="Estudar"
+              onClick={() => history.push('/list')}
+            />
           </button>
           <button className="btn-classes">
             <img 
               src={DarAulas} 
               alt="Dar Aulas" 
-              onClick={() => history.push('/form')}/>
+              onClick={() => history.push('/form')}
+            />
           </button>
         </div>
         <div className="layer">
