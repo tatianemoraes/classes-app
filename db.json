@@ -2,30 +2,38 @@
   "proffys": [
     {
       "id": 1,
-      "name": "Maria Antonia", 
-      "class": "Português", 
-      "mainSentence": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim consectetur fuga facilis!", 
-      "moreAbout": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, repudiandae praesentium. Molestias at voluptatibus officia sed voluptas, eius numquam similique hic necessitatibus odit officiis aut tenetur autem est excepturi cum.", 
+      "name": "Maria Antonia",
+      "class": "Português",
+      "telephone": "(19)99999-9999",
+      "mainSentence": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim consectetur fuga facilis!",
+      "biography": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, repudiandae praesentium. Molestias at voluptatibus officia sed voluptas, eius numquam similique hic necessitatibus odit officiis aut tenetur autem est excepturi cum.",
       "price": "40,00",
-      "telephone": "(19)99999-9999"
-    }, 
+      "day": "Sábado",
+      "hour1": "08:00",
+      "hour2": "12:00"
+    },
     {
       "id": 2,
-      "name": "Marcos Antonio", 
-      "class": "Química", 
-      "mainSentence": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim consectetur fuga facilis!", 
-      "moreAbout": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, repudiandae praesentium. Molestias at voluptatibus officia sed voluptas, eius numquam similique hic necessitatibus odit officiis aut tenetur autem est excepturi cum.", 
+      "name": "Marcos Antonio",
+      "class": "Química",
+      "telephone": "(19)99999-8888",
+      "mainSentence": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim consectetur fuga facilis!",
+      "biography": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, repudiandae praesentium. Molestias at voluptatibus officia sed voluptas, eius numquam similique hic necessitatibus odit officiis aut tenetur autem est excepturi cum.",
       "price": "20,00",
-      "telephone": "(19)99999-8888"
-    }, 
+      "hour1": "08:00",
+      "hour2": "12:00"
+    },
     {
-      "id": 3,
-      "name": "Eduardo Torres", 
-      "class": "Inglês", 
-      "mainSentence": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Et enim consectetur fuga facilis!", 
-      "moreAbout": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem, repudiandae praesentium. Molestias at voluptatibus officia sed voluptas, eius numquam similique hic necessitatibus odit officiis aut tenetur autem est excepturi cum.", 
-      "price": "35,00",
-      "telephone": "(19)99999-5555"
+      "name": "Tashya Bowen",
+      "telephone": "+1 (609) 713-7314",
+      "mainSentence": "Quis distinctio Del",
+      "price": "538",
+      "hour1": "09:18",
+      "hour2": "10:36",
+      "biography": "Consectetur occaecat",
+      "class": "english",
+      "day": "monday",
+      "id": 3
     }
   ]
 }

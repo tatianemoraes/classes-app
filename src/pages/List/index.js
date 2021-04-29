@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect } from 'react';
 import HeaderForm from '../../components/HeaderForm';
-import { api } from '../../services/api';
+import { useProffysContext } from '../../contexts/useProffysContext';
 
 import Profile from '../../assets/Profile.png';
 
@@ -9,15 +10,12 @@ import { Container, Panel } from './style';
 
 function List() {
   const title = 'Estes são os proffys disponíveis.'; 
-  const [proffys, setProffys] = useState([]);
 
+  const { proffys, getProffys } = useContext(useProffysContext);
+ 
   useEffect(() => {
-    async function getData() { 
-      const { data } = await api.get('/proffys');
-      setProffys(data);
-    }
-    getData();
-  }, []);
+    getProffys()
+  },[]);
 
   return (
     <>
@@ -26,7 +24,7 @@ function List() {
         {
           proffys.map(prof => (
             <Panel key={prof.id}>
-            <div className="profile">
+            <div className='profile'>
               <div className='proffy-details'>
                 <img src={Profile} alt=""/>
                 <div className='title-design'>
@@ -38,14 +36,16 @@ function List() {
                 <span className='proffy-main-phrase'>
                   {prof.mainSentence}
                 </span>
-                <span className='proffy-more-about'>{prof.moreAbout}</span>
+                <span className='proffy-more-about'>{prof.biography}</span>
               </div>
               <hr/>
               <div className='details-price'>
                 <h3 className='proffy-title-price'>Preço/hora</h3>
                 <h4 className='proffy-price'>R$ {prof.price}</h4>
-                <button className='proffy-contact'>
-                  <VscCallOutgoing className="call-img"/>
+                <button 
+                  className='proffy-contact'
+                >
+                  <VscCallOutgoing className='call-img'/>
                   Entrar em contato
                 </button>
               </div>
