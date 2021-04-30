@@ -15,18 +15,24 @@ function Buttons() {
     <Container>
       <div className="footer">
         <div className="buttons">
-          <button className="btn-study">
+          <button 
+            className="btn-study" 
+            data-testid="study"
+            onClick={() => history.push('/list')}
+          >
             <img 
               src={Estudar} 
               alt="Estudar"
-              onClick={() => history.push('/list')}
+              
             />
           </button>
-          <button className="btn-classes">
+          <button 
+            className="btn-classes"
+            onClick={() => history.push('/form')} 
+          >
             <img 
               src={DarAulas} 
               alt="Dar Aulas" 
-              onClick={() => history.push('/form')}
             />
           </button>
         </div>
