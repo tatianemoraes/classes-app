@@ -1,15 +1,20 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, act } from '@testing-library/react';
+import { api } from '../../../services/api';
+import MockAdapter from "axios-mock-adapter";
 import FormClasses from '../index';
 import '@testing-library/jest-dom';
-import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect';
+
+
+const mock = new MockAdapter(api);
 
 describe('should renders correctly', () => {
   it('should render text', () => {
-    render(<FormClasses />); 
-    
-    const text = screen.getByText('Seus dados'); 
+    render(<FormClasses />);
+
+    const text = screen.getByText('Seus dados');
     expect(text).toBeInTheDocument();
-  }); 
+  });
 
   it('should have input field name', () => {
     render(<FormClasses />);
@@ -169,62 +174,94 @@ describe('should renders correctly', () => {
 
 
   it('should register after received all needed values', async () => {
+
     global.alert = jest.fn();
 
-    const mockHandler = jest.fn();
+    const alertSpy = jest.spyOn(global, 'alert');
 
-    render(<FormClasses onSubmit={mockHandler}/>); 
-  
-      const inputName = screen.getByLabelText('Nome completo', { selector: 'input' });
-      const inputWhatsapp = screen.getByLabelText('Whatsapp (somente números)', { selector: 'input' });
-      const inputSentence = screen.getByLabelText('Frase', { selector: 'input' });
-      const inputBiography = screen.getByLabelText('Biografia');
-      const selectClass = screen.getByLabelText('Matéria');
-      const inputPrice = screen.getByLabelText('Custo da sua hora por aula (em R$)', { selector: 'input' });
-      const selectDay = screen.getByLabelText('Dia da semana');
-      const inputSince = screen.getByLabelText('Das', { selector: 'input' });
-      const inputUntil = screen.getByLabelText('Até', { selector: 'input' });
+    mock.onPost("/proffys").reply(200);
 
-      fireEvent.change(inputName, { target: { value: 'texto'}});
-      fireEvent.change(inputWhatsapp, { target: { value: '12344321' } });
-      fireEvent.change(inputSentence, { target: { value: 'Eu tenho conhecimento em línguas estrangeiras' }});
-      fireEvent.change(inputBiography, { target: { value: 'Morei no Canadá durante 5 anos, desenvolvi trabalhos focando em conversação com nativos e expessões nativas. A partir disso, possuo vasta experiência.' } });
-      fireEvent.change(screen.getByPlaceholderText('Selecione qual você quer ensinar'), { target: { value: 'english' } });
-      fireEvent.change(inputPrice, { target: { value: '30,00' } });
-      fireEvent.change(screen.getByPlaceholderText('Selecione o dia'), { target: { value: 'sunday' } });
-      fireEvent.change(inputSince, { target: { value: '06:00' } });
-      fireEvent.change(inputUntil, { target: { value: '08:00' } });
-      
-      expect(inputName).toHaveValue('texto');
-      expect(inputWhatsapp).toHaveValue('12344321');
-      expect(inputSentence).toHaveValue('Eu tenho conhecimento em línguas estrangeiras');
-      expect(inputBiography).toHaveValue('Morei no Canadá durante 5 anos, desenvolvi trabalhos focando em conversação com nativos e expessões nativas. A partir disso, possuo vasta experiência.');
-      expect(selectClass).toHaveValue('english');
-      expect(inputPrice).toHaveValue('30,00');
-      expect(selectDay).toHaveValue('sunday');
-      expect(inputSince).toHaveValue('06:00');
-      expect(inputUntil).toHaveValue('08:00');
-      
-      const btn = screen.getByTestId('form-proffy');
-      fireEvent.submit(btn); 
-      // screen.debug()
+    render(<FormClasses/>);
 
-      expect(mockHandler).toHaveBeenCalled();
-       screen.debug()
-    
-        
-      // await waitFor(() => { 
-      //   expect(inputName).toBeInTheDocument('');
-      //   expect(inputWhatsapp).toBeInTheDocument('');
-      //   expect(inputSentence).toBeInTheDocument('');
-      //   expect(inputBiography).toBeInTheDocument('');
-      //   expect(selectClass).toBeInTheDocument('');
-      //   expect(inputPrice).toBeInTheDocument('');
-      //   expect(selectDay).toBeInTheDocument('');
-      //   expect(inputSince).toBeInTheDocument('');
-      //   expect(inputUntil).toBeInTheDocument('');
-      // });
+    const inputName = screen.getByLabelText('Nome completo', { selector: 'input' });
+    const inputWhatsapp = screen.getByLabelText('Whatsapp (somente números)', { selector: 'input' });
+    const inputSentence = screen.getByLabelText('Frase', { selector: 'input' });
+    const inputBiography = screen.getByLabelText('Biografia');
+    const selectClass = screen.getByPlaceholderText('Selecione qual você quer ensinar');
+    const inputPrice = screen.getByLabelText('Custo da sua hora por aula (em R$)', { selector: 'input' });
+    const selectDay = screen.getByPlaceholderText('Selecione o dia');
+    const inputSince = screen.getByLabelText('Das', { selector: 'input' });
+    const inputUntil = screen.getByLabelText('Até', { selector: 'input' });
+    const btn = screen.getByRole('button', { name: 'Salvar Cadastro'});
 
+
+    fireEvent.change(inputName, { target: { value: 'texto'}});
+    fireEvent.change(inputWhatsapp, { target: { value: '12344321' } });
+    fireEvent.change(inputSentence, { target: { value: 'Eu tenho conhecimento em línguas estrangeiras' }});
+    fireEvent.change(inputBiography, { target: { value: 'Morei no Canadá durante 5 anos, desenvolvi trabalhos focando em conversação com nativos e expessões nativas. A partir disso, possuo vasta experiência.' } });
+
+    fireEvent.change(selectClass, { target: { value: 'english' } });
+    expect(screen.getByText("Inglês")).toBeInTheDocument(); // testa se o select foi selecionado
+
+    fireEvent.change(inputPrice, { target: { value: '30,00' } });
+
+    fireEvent.change(selectDay, { target: { value: 'sunday' } });
+    expect(screen.getByText("Domingo")).toBeInTheDocument(); // testa se o select foi selecionado
+
+    fireEvent.change(inputSince, { target: { value: '06:00' } });
+
+    fireEvent.change(inputUntil, { target: { value: '08:00' } });
+
+    fireEvent.click(btn);
+
+    await waitFor(() => {
+      expect(alertSpy).toHaveBeenCalledWith('cadastrado com sucesso!');
+    });
+
+  });
+
+  it('should not register after received all needed values', async () => {
+
+    global.alert = jest.fn();
+
+    const alertSpy = jest.spyOn(global, 'alert');
+
+    mock.onPost("/proffys").reply(200);
+
+    render(<FormClasses/>);
+
+    const inputName = screen.getByLabelText('Nome completo', { selector: 'input' });
+    const inputWhatsapp = screen.getByLabelText('Whatsapp (somente números)', { selector: 'input' });
+    const inputSentence = screen.getByLabelText('Frase', { selector: 'input' });
+    const inputBiography = screen.getByLabelText('Biografia');
+    const selectClass = screen.getByPlaceholderText('Selecione qual você quer ensinar');
+    const inputPrice = screen.getByLabelText('Custo da sua hora por aula (em R$)', { selector: 'input' });
+    const selectDay = screen.getByPlaceholderText('Selecione o dia');
+    const inputSince = screen.getByLabelText('Das', { selector: 'input' });
+    const inputUntil = screen.getByLabelText('Até', { selector: 'input' });
+    const btn = screen.getByRole('button', { name: 'Salvar Cadastro'});
+
+
+    fireEvent.change(inputName, { target: { value: ''}});
+    fireEvent.change(inputWhatsapp, { target: { value: '' } });
+    fireEvent.change(inputSentence, { target: { value: '' }});
+    fireEvent.change(inputBiography, { target: { value: '' } });
+
+    fireEvent.change(selectClass, { target: { value: '' } });
+
+    fireEvent.change(inputPrice, { target: { value: '' } });
+
+    fireEvent.change(selectDay, { target: { value: '' } });
+
+    fireEvent.change(inputSince, { target: { value: '' } });
+
+    fireEvent.change(inputUntil, { target: { value: '' } });
+
+    fireEvent.click(btn);
+
+    await waitFor(() => {
+      expect(alertSpy).not.toHaveBeenCalledWith('cadastrado com sucesso!');
+    });
 
   });
 
