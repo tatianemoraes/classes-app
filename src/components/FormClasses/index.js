@@ -12,7 +12,7 @@ function FormClasses() {
   }
 
   async function postProffy (e) {
-   
+
     e.preventDefault();
 
     if(proffy.name && proffy.telephone && proffy.mainSentence && proffy.price && proffy.hour1 && proffy.hour2 && proffy.biography && proffy.class && proffy.day) {
@@ -55,11 +55,11 @@ function FormClasses() {
 
   return (
     <Container>
-      <Form data-testid="form-proffy" onSubmit={postProffy}>
+      <Form data-testid="form-proffy" onSubmit={(event) => postProffy(event)}>
         <span>Seus dados</span>
         <hr/>
         <label htmlFor="input-name">Nome completo</label>
-        <input 
+        <input
           name="name"
           id="input-name"
           type="text"
@@ -69,7 +69,7 @@ function FormClasses() {
         <label htmlFor="input-whatsapp">Whatsapp (somente números)</label>
         <input
           id="input-whatsapp"
-          name="telephone" 
+          name="telephone"
           type="tel"
           onChange={(e) => validateFields(e)}
           value={proffy.telephone || ''}
@@ -77,7 +77,7 @@ function FormClasses() {
         <label htmlFor="input-sentence">Frase</label>
         <input
           id="input-sentence"
-          name="mainSentence" 
+          name="mainSentence"
           type="text"
           onChange={(e) => validateFields(e)}
           value={proffy.mainSentence || ''}
@@ -85,7 +85,7 @@ function FormClasses() {
         <label htmlFor="input-biography">Biografia</label>
         <textarea
           id="input-biography"
-          name="biography" 
+          name="biography"
           className="input-biography"
           onChange={(e) => validateFields(e)}
           value={proffy.biography || ''}
@@ -94,10 +94,10 @@ function FormClasses() {
 
         <span>Sobre a aula</span>
         <label htmlFor="select-class">Matéria</label>
-        <select 
+        <select
           id="select-class"
           className="class"
-          name="class" 
+          name="class"
           placeholder="Selecione qual você quer ensinar"
           onChange={(e) => validateFields(e)}
           value={proffy.class || ''}
@@ -110,7 +110,7 @@ function FormClasses() {
         </select>
 
         <label htmlFor="input-price">Custo da sua hora por aula (em R$)</label>
-        <input 
+        <input
           id="input-price"
           type="text"
           name="price"
@@ -132,10 +132,10 @@ function FormClasses() {
           </div>
 
           <div className="appointment-configuration">
-            <select 
-              className="weekdays" 
-              name="day" 
-              id="select-day" 
+            <select
+              className="weekdays"
+              name="day"
+              id="select-day"
               placeholder="Selecione o dia"
               onChange={(e) => validateFields(e)}
               value={proffy.day || ''}
@@ -148,18 +148,18 @@ function FormClasses() {
               <option value="friday">Sexta-Feira</option>
               <option value="saturday">Sábado</option>
             </select>
-            <input 
+            <input
               id="since"
-              className="hour1" 
+              className="hour1"
               type="time"
               name="hour1"
               min="08:00" max="18:00"
               onChange={(e) => validateFields(e)}
               value={proffy.hour1 || ''}
             />
-            <input 
+            <input
               id="until"
-              className="hour2" 
+              className="hour2"
               type="time"
               name="hour2"
               min="08:00" max="23:59"
@@ -169,7 +169,7 @@ function FormClasses() {
           </div>
 
           <div>
-            <button 
+            <button
               className="btn-save"
               type="submit"
             >
